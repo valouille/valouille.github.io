@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>smcli on VaLouille</title><link>https://valouille.github.io/tags/smcli/</link><description>Recent content in smcli on VaLouille</description><generator>Hugo -- gohugo.io</generator><language>fr</language><copyright>Valérian Beaudoin</copyright><lastBuildDate>Wed, 27 Aug 2014 16:23:15 +0000</lastBuildDate><atom:link href="https://valouille.github.io/tags/smcli/index.xml" rel="self" type="application/rss+xml"/><item><title>Installer Dell Powervault MD Storage Software (SMcli …) sous Debian</title><link>https://valouille.github.io/2014/08/installer-dell-powervault-md-storage-software-smcli/</link><pubDate>Wed, 27 Aug 2014 16:23:15 +0000</pubDate><guid>https://valouille.github.io/2014/08/installer-dell-powervault-md-storage-software-smcli/</guid><description>Voici la procédure pour installer SMclient sous Debian en passant par des paquets .DEB :
+Java doit être installé :
+apt-get install openjdk-7-jre Télécharger le ressource CD/DVD sur le site de Dell (Actuellement : DELL_MDSS_Consolidated_RDVD_5_1_0_9.iso)
+Le monter :
+mount DELL_MDSS_Consolidated_RDVD_5_1_0_9.iso /mnt On copie les fichiers qui nous intéressent :
+mkdir ~/dell_mdss cp /mnt/linux/mdsm/* ~/dell_mdss cd ~/dell_mdss On crée le lien necessaire pour l’exécution du binaire :
+ln -s /lib/x86_64-linux-gnu/libc.so.6 /lib/libc.so.6 On lance le binaire :</description></item></channel></rss>

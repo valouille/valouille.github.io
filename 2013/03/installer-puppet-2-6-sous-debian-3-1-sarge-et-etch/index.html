@@ -1,0 +1,75 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Installer Puppet 2.6 sous Debian 3.1 Sarge et Etch - VaLouille</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="VaLouille"><meta name=description content="A l’installation de puppet sous Debian Sarge, on se retrouve avec l’erreur suivante :
+err: /File[/var/lib/puppet/lib]: Failed to generate additional resources using &amp;#39;eval_generate&amp;#39;: unknown message digest algorithm err: /File[/var/lib/puppet/lib]: Could not evaluate: unknown message digest algorithm Could not retrieve file metadata for puppet://bushmills.nexen.net/plugins: unknown message digest algorithm Il s’agit d’un bug de la libssl0.9.8, comme on le voit dans les bug reports suivants : #648285, #544819, ou #541735
+Sous Debian Sarge, c’est la version 0."><meta name=keywords content="Valérian,Beaudoin,VaLouille"><meta name=generator content="Hugo 0.103.1 with theme even"><link rel=canonical href=https://valouille.github.io/2013/03/installer-puppet-2-6-sous-debian-3-1-sarge-et-etch/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet><link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet><meta property="og:title" content="Installer Puppet 2.6 sous Debian 3.1 Sarge et Etch"><meta property="og:description" content="A l’installation de puppet sous Debian Sarge, on se retrouve avec l’erreur suivante :
+err: /File[/var/lib/puppet/lib]: Failed to generate additional resources using 'eval_generate': unknown message digest algorithm err: /File[/var/lib/puppet/lib]: Could not evaluate: unknown message digest algorithm Could not retrieve file metadata for puppet://bushmills.nexen.net/plugins: unknown message digest algorithm Il s’agit d’un bug de la libssl0.9.8, comme on le voit dans les bug reports suivants : #648285, #544819, ou #541735
+Sous Debian Sarge, c’est la version 0."><meta property="og:type" content="article"><meta property="og:url" content="https://valouille.github.io/2013/03/installer-puppet-2-6-sous-debian-3-1-sarge-et-etch/"><meta property="article:section" content="post"><meta property="article:published_time" content="2013-03-28T12:23:15+00:00"><meta property="article:modified_time" content="2013-03-28T12:23:15+00:00"><meta itemprop=name content="Installer Puppet 2.6 sous Debian 3.1 Sarge et Etch"><meta itemprop=description content="A l’installation de puppet sous Debian Sarge, on se retrouve avec l’erreur suivante :
+err: /File[/var/lib/puppet/lib]: Failed to generate additional resources using 'eval_generate': unknown message digest algorithm err: /File[/var/lib/puppet/lib]: Could not evaluate: unknown message digest algorithm Could not retrieve file metadata for puppet://bushmills.nexen.net/plugins: unknown message digest algorithm Il s’agit d’un bug de la libssl0.9.8, comme on le voit dans les bug reports suivants : #648285, #544819, ou #541735
+Sous Debian Sarge, c’est la version 0."><meta itemprop=datePublished content="2013-03-28T12:23:15+00:00"><meta itemprop=dateModified content="2013-03-28T12:23:15+00:00"><meta itemprop=wordCount content="305"><meta itemprop=keywords content="debian,etch,libssl0.9.8,openssl,puppet,rubygems,sarge,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Installer Puppet 2.6 sous Debian 3.1 Sarge et Etch"><meta name=twitter:description content="A l’installation de puppet sous Debian Sarge, on se retrouve avec l’erreur suivante :
+err: /File[/var/lib/puppet/lib]: Failed to generate additional resources using 'eval_generate': unknown message digest algorithm err: /File[/var/lib/puppet/lib]: Could not evaluate: unknown message digest algorithm Could not retrieve file metadata for puppet://bushmills.nexen.net/plugins: unknown message digest algorithm Il s’agit d’un bug de la libssl0.9.8, comme on le voit dans les bug reports suivants : #648285, #544819, ou #541735
+Sous Debian Sarge, c’est la version 0."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>VaLouille</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/cv/><li class=mobile-menu-item>About Me</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>VaLouille</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/cv/>About Me</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Installer Puppet 2.6 sous Debian 3.1 Sarge et Etch</h1><div class=post-meta><span class=post-time>2013-03-28</span><div class=post-category><a href=/categories/linux/>linux</a>
+<a href=/categories/sysadmin/>sysadmin</a></div></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>A l’installation de puppet sous Debian Sarge, on se retrouve avec l’erreur suivante :</p><pre tabindex=0><code>err: /File[/var/lib/puppet/lib]: Failed to generate additional resources using &#39;eval_generate&#39;: unknown message digest algorithm
+err: /File[/var/lib/puppet/lib]: Could not evaluate: unknown message digest algorithm Could not retrieve file metadata for puppet://bushmills.nexen.net/plugins: unknown message digest algorithm
+</code></pre><p>Il s’agit d’un bug de la libssl0.9.8, comme on le voit dans les bug reports suivants : <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=648285" title=#648285>#648285</a>, <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=544819" title=#544819>#544819</a>, ou <a href="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=541735" title=#541735>#541735</a></p><p>Sous Debian Sarge, c’est la version 0.9.7 qui est utilisée. Ce bug n’a donc pas été résolu sous Sarge. J’ai donc compilé des paquets backportés de Etch afin de bypasser ce bug sans perturber le système. Voici la procédure complète pour installer Puppet 2.6 sous Debian Sarge. Cette procédure est aussi compatible avec Etch.</p><p>Installer Ruby à partir des dépots :</p><pre tabindex=0><code>apt-get install curl wget lsb-base lsb-release irb1.8 libreadline-ruby1.8 libruby libruby1.8 rdoc1.8 ruby ruby1.8 ruby1.8-dev libopenssl-ruby1.8 libshadow-ruby1.8
+</code></pre><p>Installer RubyGems :</p><pre tabindex=0><code>wget http://rubyforge.org/frs/download.php/20989/rubygems-0.9.4.tgz
+tar xzf rubygems-0.9.4.tgz
+cd rubygems-0.9.4
+ruby setup.rb
+</code></pre><p>Installer Puppet et Facter avec RubyGems :</p><pre tabindex=0><code>wget -q http://rubygems.org/downloads/facter-1.6.18.gem
+wget -q http://rubygems.org/downloads/puppet-2.6.2.gem
+gem install --no-rdoc --no-ri facter-1.6.18.gem
+gem install --no-rdoc --no-ri puppet-2.6.2.gem
+</code></pre><p>Créer le répertoire /etc/puppet :</p><pre tabindex=0><code>mkdir /etc/puppet
+</code></pre><p>Créer le fichier de configuration /etc/puppet/puppet.conf en remplaçant l’URL du serveur :</p><pre tabindex=0><code>[main]
+logdir=/var/log/puppet
+vardir=/var/lib/puppet
+ssldir=/var/lib/puppet/ssl
+rundir=/var/run/puppet
+factpath=\$vardir/lib/facter
+templatedir=\$confdir/templates
+pluginsync = true
+server=server.puppet.com
+report=true
+</code></pre><p>On installe le fichier d’init :</p><pre tabindex=0><code>curl -k -s &#39;https://blog.valouille.fr/wp-content/uploads/2013/03/puppet.init&#39; &gt; /etc/init.d/puppet
+chmod 755 /etc/init.d/puppet
+update-rc.d puppet defaults 21
+</code></pre><p>On met on place le fichier /etc/default/puppet avec le contenu suivante :</p><pre tabindex=0><code># Defaults for puppet - sourced by /etc/init.d/puppet
+
+# Start puppet on boot?
+START=yes
+
+# Startup options
+DAEMON_OPTS=&#34;&#34;
+</code></pre><p>On paramètre les droits :</p><pre tabindex=0><code>chmod 644 /etc/default/puppet
+</code></pre><p><strong>Uniquement pour Sarge :</strong></p><p>Télécharger l’archive contenant les .deb de openssl <a href=https://blog.valouille.fr/wp-content/uploads/2013/03/ssl-puppet-sarge.tar.gz>ssl-puppet-sarge.tar.gz</a> et les installer :</p><pre tabindex=0><code>wget https://blog.valouille.fr/wp-content/uploads/2013/03/ssl-puppet-sarge.tar.gz
+tar xvzf ssl-puppet-sarge.tar.gz
+dpkg -i libopenssl-ruby1.8_1.8.5-4+awh_i386.deb libssl0.9.8_0.9.8c-4+awh_i386.deb openssl_0.9.8c-4+awh_i386.deb libruby1.8_1.8.5-4~bpo.1_i386.deb
+</code></pre><p>Il ne reste plus qu’à tester :</p><pre tabindex=0><code>puppet agent --test
+</code></pre></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>VaLouille</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2013-03-28</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/debian/>debian</a>
+<a href=/tags/etch/>etch</a>
+<a href=/tags/libssl0.9.8/>libssl0.9.8</a>
+<a href=/tags/openssl/>openssl</a>
+<a href=/tags/puppet/>puppet</a>
+<a href=/tags/rubygems/>rubygems</a>
+<a href=/tags/sarge/>sarge</a></div><nav class=post-nav><a class=prev href=/2013/04/voir-le-switch-ainsi-que-le-port-sur-lequel-une-machine-est-branchee-avec-tcpdump/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Voir le switch ainsi que le port sur lequel une machine est branchée avec tcpdump</span>
+<span class="prev-text nav-mobile">Prev</span></a>
+<a class=next href=/2013/03/resoudre-lerreur-http-414-dans-puppet/><span class="next-text nav-default">Résoudre l'erreur HTTP 414 dans puppet</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname==="localhost")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="valouille",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:valerian.beaudoin@gmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/valouille/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://valouille.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2013 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>Valérian Beaudoin</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/lib/fancybox/jquery.fancybox-3.1.20.min.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-38377556-1","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

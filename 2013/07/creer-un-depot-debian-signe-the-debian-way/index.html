@@ -1,0 +1,133 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Créer un dépôt Debian signé « The Debian Way ! » - VaLouille</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="VaLouille"><meta name=description content="Voici la procédure permettant de créer un dépôt Debian signé avec des paquets signés.
+Il faut tout d’abord générer une clé GPG :
+apt:~# gpg --gen-key gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc. This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law. Sélectionnez le type de clef désiré : (1) RSA et RSA (par défaut) (2) DSA et Elgamal (3) DSA (signature seule) (4) RSA (signature seule) Quel est votre choix ?"><meta name=keywords content="Valérian,Beaudoin,VaLouille"><meta name=generator content="Hugo 0.103.1 with theme even"><link rel=canonical href=https://valouille.github.io/2013/07/creer-un-depot-debian-signe-the-debian-way/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet><link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet><meta property="og:title" content="Créer un dépôt Debian signé « The Debian Way ! »"><meta property="og:description" content="Voici la procédure permettant de créer un dépôt Debian signé avec des paquets signés.
+Il faut tout d’abord générer une clé GPG :
+apt:~# gpg --gen-key gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc. This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law. Sélectionnez le type de clef désiré : (1) RSA et RSA (par défaut) (2) DSA et Elgamal (3) DSA (signature seule) (4) RSA (signature seule) Quel est votre choix ?"><meta property="og:type" content="article"><meta property="og:url" content="https://valouille.github.io/2013/07/creer-un-depot-debian-signe-the-debian-way/"><meta property="article:section" content="post"><meta property="article:published_time" content="2013-07-29T15:57:53+00:00"><meta property="article:modified_time" content="2013-07-29T15:57:53+00:00"><meta itemprop=name content="Créer un dépôt Debian signé « The Debian Way ! »"><meta itemprop=description content="Voici la procédure permettant de créer un dépôt Debian signé avec des paquets signés.
+Il faut tout d’abord générer une clé GPG :
+apt:~# gpg --gen-key gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc. This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law. Sélectionnez le type de clef désiré : (1) RSA et RSA (par défaut) (2) DSA et Elgamal (3) DSA (signature seule) (4) RSA (signature seule) Quel est votre choix ?"><meta itemprop=datePublished content="2013-07-29T15:57:53+00:00"><meta itemprop=dateModified content="2013-07-29T15:57:53+00:00"><meta itemprop=wordCount content="740"><meta itemprop=keywords content="debian,depot,repo,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Créer un dépôt Debian signé « The Debian Way ! »"><meta name=twitter:description content="Voici la procédure permettant de créer un dépôt Debian signé avec des paquets signés.
+Il faut tout d’abord générer une clé GPG :
+apt:~# gpg --gen-key gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc. This is free software: you are free to change and redistribute it. There is NO WARRANTY, to the extent permitted by law. Sélectionnez le type de clef désiré : (1) RSA et RSA (par défaut) (2) DSA et Elgamal (3) DSA (signature seule) (4) RSA (signature seule) Quel est votre choix ?"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>VaLouille</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/cv/><li class=mobile-menu-item>About Me</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>VaLouille</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/cv/>About Me</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Créer un dépôt Debian signé « The Debian Way ! »</h1><div class=post-meta><span class=post-time>2013-07-29</span><div class=post-category><a href=/categories/linux/>linux</a>
+<a href=/categories/sysadmin/>sysadmin</a></div></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>Voici la procédure permettant de créer un dépôt Debian signé avec des paquets signés.</p><p>Il faut tout d’abord générer une clé GPG :</p><pre tabindex=0><code>apt:~# gpg --gen-key
+gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Sélectionnez le type de clef désiré :
+   (1) RSA et RSA (par défaut)
+   (2) DSA et Elgamal
+   (3) DSA (signature seule)
+   (4) RSA (signature seule)
+Quel est votre choix ? 1
+les clefs RSA peuvent faire entre 1024 et 4096 bits de longueur.
+Quelle taille de clef désirez-vous ? (2048)
+La taille demandée est 2048 bits
+Veuillez indiquer le temps pendant lequel cette clef devrait être valable.
+         0 = la clef n&#39;expire pas
+      &lt;n&gt;  = la clef expire dans n jours
+      &lt;n&gt;w = la clef expire dans n semaines
+      &lt;n&gt;m = la clef expire dans n mois
+      &lt;n&gt;y = la clef expire dans n ans
+Pendant combien de temps la clef est-elle valable ? (0)
+La clef n&#39;expire pas du tout
+Est-ce correct ? (o/N) o
+
+Une identité est nécessaire à la clef ; le programme la construit à partir
+du nom réel, d&#39;un commentaire et d&#39;une adresse électronique de cette façon :
+   « Heinrich Heine (le poète) &lt;heinrichh@duesseldorf.de&gt; »
+
+Nom réel : Prénom Nom
+Adresse électronique : mail@domain.com
+Commentaire :
+Vous avez sélectionné cette identité :
+    « Prénom Nom &lt;mail@domain.com&gt; »
+
+Faut-il modifier le (N)om, le (C)ommentaire, l&#39;(A)dresse électronique
+ou (O)ui/(Q)uitter ? O
+Une phrase de passe est nécessaire pour protéger votre clef secrète.
+
+De nombreux octets aléatoires doivent être générés. Vous devriez faire
+autre chose (taper au clavier, déplacer la souris, utiliser les disques)
+pendant la génération de nombres premiers ; cela donne au générateur de
+nombres aléatoires une meilleure chance d&#39;obtenir suffisamment d&#39;entropie.
+
+Il n&#39;y a pas suffisamment d&#39;octets aléatoires disponibles. Veuillez faire
+autre chose pour que le système d&#39;exploitation puisse rassembler plus
+d&#39;entropie (284 octets supplémentaires sont nécessaires).
+.+++++
+.+++++
+De nombreux octets aléatoires doivent être générés. Vous devriez faire
+autre chose (taper au clavier, déplacer la souris, utiliser les disques)
+pendant la génération de nombres premiers ; cela donne au générateur de
+nombres aléatoires une meilleure chance d&#39;obtenir suffisamment d&#39;entropie.
+.+++++
+.....+++++
+gpg: /root/.gnupg/trustdb.gpg : base de confiance créée
+gpg: clef FB03BB12 marquée de confiance ultime.
+les clefs publique et secrète ont été créées et signées.
+
+gpg: vérification de la base de confiance
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+gpg: 3 marginale(s) nécessaire(s), 1 complète(s) nécessaire(s),
+     modèle de confiance PGP
+gpg: profondeur : 0  valables :   1  signées :   0
+     confiance : 0 i., 0 n.d., 0 j., 0 m., 0 t., 1 u.
+pub   2058R/FB04EE02 2013-07-29
+ Empreinte de la clef = B0E1 5914 DD93 44BD 8134  2C28 BD19 BDE1 AD03 EE02
+uid                  Prénom Nom &lt;mail@domain.com&gt;
+sub   2058R/78443608 2013-07-29
+</code></pre><p>La commande suivante va afficher la clé publique. Il faut la copier dans un fichier, par exemple /var/www/depot.key :</p><pre tabindex=0><code>gpg --armor --export mail@domain.com --output
+</code></pre><p>La commande pour la copier :</p><pre tabindex=0><code>gpg --armor --export mail@domain.com --output &gt; /var/www/depot.key
+</code></pre><p>On va avoir besoin de l’outil suivant pour signer les paquets</p><pre tabindex=0><code>apt-get install dpkg-sig
+</code></pre><p>Puis on signe le .deb que l’on souhaite ajouter au dépot :</p><pre tabindex=0><code>dpkg-sig --sign builder zabbix-agent_2.0.6-1+awh_amd64.deb
+</code></pre><p>L’option builder permet de dire que l’on est le créateur du paquet</p><p>Il va falloir créer un Vhost qui pointe dans /var/www :</p><pre tabindex=0><code>apt-get install nginx
+</code></pre><p>Modifier la ligne root du fichier /etc/nginx/sites-enabled/default comme ceci :</p><pre tabindex=0><code>root /var/www;
+</code></pre><p>Puis on redémarre nginx</p><pre tabindex=0><code>/etc/init.d/nginx restart
+</code></pre><p>Il faut créer les répertoires :</p><pre tabindex=0><code>mkdir -p /var/www/debian/conf
+</code></pre><p>Ensuite, on crée un fichier /var/www/debian/conf/distributions contenant les lignes suivantes (à adapter) :</p><pre tabindex=0><code>Origin: apt.domain.com
+Label: apt repository
+Codename: lenny
+Architectures: amd64 source
+Components: main
+Description: debian package repo
+SignWith: yes
+Pull: lenny
+DebIndices: Packages Release . .gz .bz2
+UDebIndices: Packages . .gz .bz2
+DscIndices: Sources Release .gz .bz2
+Contents: . .gz .bz2
+</code></pre><p>On utilise reprepro pour gérer nos paquets :</p><pre tabindex=0><code>apt-get install reprepro
+</code></pre><p>Ensuite on se place dans le répertoire /var/www/debian/, puis on ajoute le paquet au dépôt :</p><pre tabindex=0><code>cd /var/www/debian/
+reprepro --ask-passphrase -Vb . includedeb lenny /root/zabbix-agent_2.0.6-1+awh_amd64.deb
+</code></pre><p>Et voilà, il ne reste plus qu’à ajouter le dépot sur une machine client, ajouter la clé et tester :</p><pre tabindex=0><code>echo &#34;deb http://apt.domain.com/debian lenny main&#34; &gt;&gt; /etc/apt/sources.list
+wget -O - http://apt.domain.com/depot.key | apt-key add -
+apt-get update
+</code></pre><p>On devrait voir notre dépot :</p><pre tabindex=0><code>client# apt-cache policy zabbix-agent
+ Table de version :
+ *** 1:2.0.6-1+awh 0
+        500 http://apt.nexen.net lenny/main Packages
+        100 /var/lib/dpkg/status
+</code></pre></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>VaLouille</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2013-07-29</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/debian/>debian</a>
+<a href=/tags/depot/>depot</a>
+<a href=/tags/repo/>repo</a></div><nav class=post-nav><a class=prev href=/2013/08/compiler-un-module-perlcpan-en-paquet-debian/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Compiler un module Perl/CPAN en paquet Debian</span>
+<span class="prev-text nav-mobile">Prev</span></a>
+<a class=next href=/2013/07/comment-generer-de-lentropie/><span class="next-text nav-default">Comment générer de l'entropie</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname==="localhost")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="valouille",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:valerian.beaudoin@gmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/valouille/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://valouille.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2013 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>Valérian Beaudoin</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/lib/fancybox/jquery.fancybox-3.1.20.min.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-38377556-1","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

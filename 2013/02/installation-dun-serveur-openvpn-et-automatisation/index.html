@@ -1,0 +1,191 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Installation d'un serveur OpenVPN et automatisation - VaLouille</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="VaLouille"><meta name=description content="OpenVPN est un logiciel permettant de monter un serveur VPN SSL. Le but est de créer un LAN qui passe sur le WAN, et dont les données sont cryptées. Cela est utile quand on ne souhaite pas ouvrir de ports à partir de tout internet par exemple. Ce tutorial présente l’installation d’un serveur OpenVPN avec une identification par certificats, qui sont uniques à chaque personne.
+Installation d’un serveur OpenVPN Il faut installer le paquet OpenVPN"><meta name=keywords content="Valérian,Beaudoin,VaLouille"><meta name=generator content="Hugo 0.103.1 with theme even"><link rel=canonical href=https://valouille.github.io/2013/02/installation-dun-serveur-openvpn-et-automatisation/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet><link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet><meta property="og:title" content="Installation d'un serveur OpenVPN et automatisation"><meta property="og:description" content="OpenVPN est un logiciel permettant de monter un serveur VPN SSL. Le but est de créer un LAN qui passe sur le WAN, et dont les données sont cryptées. Cela est utile quand on ne souhaite pas ouvrir de ports à partir de tout internet par exemple. Ce tutorial présente l’installation d’un serveur OpenVPN avec une identification par certificats, qui sont uniques à chaque personne.
+Installation d’un serveur OpenVPN Il faut installer le paquet OpenVPN"><meta property="og:type" content="article"><meta property="og:url" content="https://valouille.github.io/2013/02/installation-dun-serveur-openvpn-et-automatisation/"><meta property="article:section" content="post"><meta property="article:published_time" content="2013-02-18T22:27:39+00:00"><meta property="article:modified_time" content="2013-02-18T22:27:39+00:00"><meta itemprop=name content="Installation d'un serveur OpenVPN et automatisation"><meta itemprop=description content="OpenVPN est un logiciel permettant de monter un serveur VPN SSL. Le but est de créer un LAN qui passe sur le WAN, et dont les données sont cryptées. Cela est utile quand on ne souhaite pas ouvrir de ports à partir de tout internet par exemple. Ce tutorial présente l’installation d’un serveur OpenVPN avec une identification par certificats, qui sont uniques à chaque personne.
+Installation d’un serveur OpenVPN Il faut installer le paquet OpenVPN"><meta itemprop=datePublished content="2013-02-18T22:27:39+00:00"><meta itemprop=dateModified content="2013-02-18T22:27:39+00:00"><meta itemprop=wordCount content="1085"><meta itemprop=keywords content="client,debian,openvpn,script,serveur,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Installation d'un serveur OpenVPN et automatisation"><meta name=twitter:description content="OpenVPN est un logiciel permettant de monter un serveur VPN SSL. Le but est de créer un LAN qui passe sur le WAN, et dont les données sont cryptées. Cela est utile quand on ne souhaite pas ouvrir de ports à partir de tout internet par exemple. Ce tutorial présente l’installation d’un serveur OpenVPN avec une identification par certificats, qui sont uniques à chaque personne.
+Installation d’un serveur OpenVPN Il faut installer le paquet OpenVPN"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>VaLouille</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/cv/><li class=mobile-menu-item>About Me</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>VaLouille</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/cv/>About Me</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Installation d'un serveur OpenVPN et automatisation</h1><div class=post-meta><span class=post-time>2013-02-18</span><div class=post-category><a href=/categories/linux/>linux</a>
+<a href=/categories/sysadmin/>sysadmin</a></div></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>OpenVPN est un logiciel permettant de monter un serveur VPN SSL. Le but est de créer un LAN qui passe sur le WAN, et dont les données sont cryptées. Cela est utile quand on ne souhaite pas ouvrir de ports à partir de tout internet par exemple. Ce tutorial présente l’installation d’un serveur OpenVPN avec une identification par certificats, qui sont uniques à chaque personne.</p><ul><li>Installation d’un serveur OpenVPN</li></ul><p>Il faut installer le paquet OpenVPN</p><pre tabindex=0><code>apt-get install openvpn
+</code></pre><p>Puis on copie les samples dans le répertoire de configuration</p><pre tabindex=0><code>mkdir /etc/openvpn/easy-rsa/
+cp -r /usr/share/doc/openvpn/examples/easy-rsa/2.0/* /etc/openvpn/easy-rsa/
+</code></pre><p>Il faut éditer les variables suivantes</p><pre tabindex=0><code>vim /etc/openvpn/easy-rsa/vars
+</code></pre><pre tabindex=0><code>export KEY_COUNTRY=&#34;FR&#34;
+export KEY_PROVINCE=&#34;75&#34;
+export KEY_CITY=&#34;Paris&#34;
+export KEY_ORG=&#34;Nom de la societé&#34;
+export KEY_EMAIL=&#34;email@domaine.fr&#34;
+</code></pre><p>On lance les commandes suivantes pour générer les clés et certificats (ne pas tenir compte des messages qui s’affichent, ceux-ci sont normaux)</p><pre tabindex=0><code>cd /etc/openvpn/easy-rsa/
+source vars
+./clean-all
+./build-dh
+./pkitool --initca
+./pkitool --server server
+openvpn --genkey --secret keys/ta.key
+</code></pre><p>On copie les clés dans le repertoire de configuration</p><pre tabindex=0><code>cp keys/ca.crt keys/ta.key keys/server.crt keys/server.key keys/dh1024.pem /etc/openvpn/
+</code></pre><p>On chroot OpenVPN afin de limiter la casse en cas de faille dans OpenVPN</p><pre tabindex=0><code>mkdir /etc/openvpn/jail
+mkdir /etc/openvpn/clientconf
+</code></pre><p>On crée le fichier de configuration du serveur, en adaptant avec l’adresse IP publique et le port sur lequel on souhaite faire écouter le serveur VPN.</p><pre tabindex=0><code>vim /etc/openvpn/server.conf
+</code></pre><pre tabindex=0><code>mode server
+proto tcp
+port &lt;port&gt; # A adapter
+dev tun
+ca ca.crt
+cert server.crt
+key server.key
+dh dh1024.pem
+tls-auth ta.key 
+cipher AES-256-CBC
+server 10.8.0.0 255.255.255.0 # On peut changer le réseau du LAN ici
+keepalive 10 120
+user nobody
+group nogroup
+chroot /etc/openvpn/jail
+persist-key
+persist-tun
+comp-lzo
+verb 3
+mute 20
+status openvpn-status.log
+</code></pre><p>On lance ensuite le serveur</p><pre tabindex=0><code>cd /etc/openvpn
+openvpn server.conf
+</code></pre><p>Si la ligne suivante s’affiche à la fin, le serveur est correctement configuré</p><pre tabindex=0><code>Tue Oct 16 09:13:00 2012 Initialization Sequence Completed
+</code></pre><p>On peut donc l’arréter avec un CTRL+C</p><p>On ajoute la ligne suivante à la fin du fichier de configuration /etc/openvpn/server.conf</p><pre tabindex=0><code>log-append /var/log/openvpn.log
+</code></pre><p>Puis on lance le serveur</p><pre tabindex=0><code>/etc/init.d/openvpn start
+</code></pre><p>Il faut activer l’ip_forward</p><pre tabindex=0><code>echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+</code></pre><p>Puis le mettre en dur dans la configuration en cas de reboot</p><pre tabindex=0><code>vim /etc/sysctl.conf
+</code></pre><pre tabindex=0><code>net.ipv4.ip_forward = 1
+</code></pre><p>Il faut créer la règle iptables, à adapter en fonction du LAN, et à ajouter à /etc/init.d/firewall</p><pre tabindex=0><code>iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+</code></pre><ol><li>Ajouter une nouvelle route aux clients dès leur connexion</li></ol><p>On modifie le fichier /etc/openvpn/server.conf</p><p>Ajouter la ligne après « server  » :</p><pre tabindex=0><code>push &#39;route 192.168.3.0 255.255.255.0&#39;
+</code></pre><p>On relance le serveur OpenVPN :</p><pre tabindex=0><code>/etc/init.d/openvpn restart
+</code></pre><p>Dans le cas où la chaine « FORWARD » d’iptables est en « Policy DROP », il faut autoriser le routage</p><p>vers une machine en particlulier :</p><pre tabindex=0><code>iptables -A FORWARD -i tun0 -s 10.8.0.0/24 -d 192.168.3.121 -j ACCEPT
+</code></pre><p>vers un réseau entier :</p><pre tabindex=0><code>iptables -A FORWARD -i tun0 -s 10.8.0.0/24 -d 192.168.3.0/24 -j ACCEPT
+</code></pre><ul><li>Script d’ajout d’utilisateurs</li></ul><p>Voici le script d’ajout automatique d’utilisateurs, ne pas oublier de change l’adresse IP et le numéro de port :</p><pre tabindex=0><code>#!/bin/bash
+# Syntaxe: # ./create_vpn_user.sh &lt;prenom-nom&gt;
+#
+# Test que le script est lance en root
+if [ $EUID -ne 0 ]; then
+  echo &#34;Le script doit etre lance en root: # $0 &lt;prenom-nom&gt;&#34; 1&gt;&amp;2
+  exit 1
+fi
+
+# Test parametre
+if [ $# -ne 1 ]; then
+  echo &#34;Il faut saisir le nom de la personne: # $0 &lt;prenom-nom&gt;&#34; 1&gt;&amp;2
+  exit 1
+fi
+
+cd /etc/openvpn/easy-rsa
+
+echo &#34;Creation du client OpenVPN: $1&#34;
+echo &#34;Veuillez choisir le type de certificat :&#34;
+echo &#34;1) Certificat SANS mot de passe&#34;
+echo &#34;2) Certificat AVEC mot de passe&#34;
+read key
+
+case $key in
+        1)
+                echo &#34;Creation du certificat SANS mot de passe pour le client $1&#34;
+                source vars
+                ./build-key $1
+                ;;
+
+        2)
+                echo &#34;Creation du certificat AVEC mot de passe pour le client $1&#34;
+                source vars
+                ./build-key-pass $1
+                ;;
+
+        *)
+                echo &#34;Choix non correct !&#34;
+                echo &#34;Arret du script&#34;
+                exit 0
+                ;;
+esac
+
+mkdir /etc/openvpn/clientconf/$1
+cp /etc/openvpn/ca.crt /etc/openvpn/ta.key keys/$1.crt keys/$1.key /etc/openvpn/clientconf/$1/
+
+cd /etc/openvpn/clientconf/$1
+cat &gt;&gt; client.conf &lt;&lt; EOF
+# Client
+client
+dev tun
+proto tcp-client
+remote &lt;IP&gt; &lt;port&gt;
+resolv-retry infinite
+cipher AES-256-CBC
+# Cles
+ca ca.crt
+cert $1.crt
+key $1.key
+tls-auth ta.key 1
+# Securite
+nobind
+persist-key
+persist-tun
+comp-lzo
+verb 3
+EOF
+cp client.conf client.ovpn
+
+tar cvzf $1.tar.gz *
+
+echo &#34;Creation du client OpenVPN $1 termine&#34;
+echo &#34;/etc/openvpn/clientconf/$1/$1.tar.gz&#34;
+echo &#34;---&#34;
+</code></pre><p>Une fois le script exécuté, il crée une archive .tar.gz dans /etc/openvpn/clientconf/nom-du-client. Il faut lui fournir cette archive, qui contient clés et certificats, ainsi que le fichier de configuration pour windows et linux</p><ul><li>Ajout manuel de client</li></ul><p>On crée la clé</p><pre tabindex=0><code>cd /etc/openvpn/easy-rsa
+source vars
+./build-key
+</code></pre><p>Il faut répondre aux questions, et on peut paramétrer un mot de passe ou pas.</p><p>Puis on crée le repertoire correspondant au client et on déplace les fichiers générés dedans</p><pre tabindex=0><code>mkdir /etc/openvpn/clientconf/&lt;prenom-nom&gt;
+cp /etc/openvpn/ca.crt /etc/openvpn/ta.key keys/&lt;prenom-nom&gt;.crt keys/&lt;prenom-nom&gt;.key /etc/openvpn/clientconf/&lt;prenom-nom&gt;
+cd /etc/openvpn/clientconf/&lt;prenom-nom&gt;/
+</code></pre><p>Il faut ensuite créer le fichier de configuration, en pensant à adapter l’IP et le port, ainsi que les noms des certificats :</p><pre tabindex=0><code>vim client.conf
+</code></pre><pre tabindex=0><code># Client
+client
+dev tun
+proto tcp-client
+remote &lt;IP&gt; &lt;port&gt;
+resolv-retry infinite
+cipher AES-256-CBC
+ca ca.crt
+cert &lt;prenom-nom&gt;.crt
+key &lt;prenom-nom&gt;.key
+tls-auth ta.key 1
+nobind
+persist-key
+persist-tun
+comp-lzo
+verb 3
+</code></pre><p>On copie le fichier en changeant l’extention pour créer un fichier de configuration Windows</p><pre tabindex=0><code>cp client.conf client.ovpn
+</code></pre><p>Puis on génère l’archive que l’on va fournir au client</p><pre tabindex=0><code>tar cvzf .tar.gz *
+</code></pre><ul><li>Configuration côté client</li><li>Sous Linux (Network-Manager) :</li></ul><p>Il faut tout d’abord installer openvpn et network-manager-openvpn-gnome</p><pre tabindex=0><code>apt-get install openvpn resolvconf network-manager-openvpn-gnome
+</code></pre><p>Puis déplacer l’archive .tar.gz dans /etc/openvpn/ et l’extraire</p><pre tabindex=0><code>mv prenom-nom.tar.gz /etc/openvpn/
+cd /etc/openvpn
+tar xvzf prenom-nom.tar.gz
+</code></pre><p>Aller dans Tableau de bord > Connexions VPN > Configurer le VPN.</p><p>Cliquer sur le bouton Importer.</p><p>Choisir le fichier /etc/openvpn/client.conf</p><p>Remplacer le nom de la connexion par un nom plus explicite</p><p>Cliquer sur « Editer », puis aller dans « Routes », et cocher la case « Utiliser cette connexion uniquement pour les ressources du réseau »</p><p>Cliquer sur « Appliquer », puis aller dans Tableau de bord > Connexions VPN > Client</p><p>Le VPN devrait être connecté.</p><ul><li>Sous Windows</li></ul><p>Télécharger OpenVPN for Windows :</p><p>L’installer, accepter la création du nouveau périphérique « TAP ».</p><p>Extraire l’archive et copier les fichiers dans C:\Programmes\OpenVPN\config</p><p>Lancer OpenVPN GUI (Avec les droits administrateurs, clique droit, Exécuter en tant qu’administrateur »)</p><p>Une icône apparaitra en bas, et quelques secondes plus tard, une bulle informe de l’IP assignée.</p><ul><li>Sous Linux à la main</li></ul><p>Aller dans le répertoire qui contient l’archive extraite, puis lancer la commande suivante</p><pre tabindex=0><code>openvpn --script-security 2 --config client.conf
+</code></pre><p>La ligne suivante doit s’afficher à la fin</p><pre tabindex=0><code>Tue Oct 16 16:30:39 2012 Initialization Sequence Completed
+</code></pre></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>VaLouille</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2013-02-18</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/client/>client</a>
+<a href=/tags/debian/>debian</a>
+<a href=/tags/openvpn/>openvpn</a>
+<a href=/tags/script/>script</a>
+<a href=/tags/serveur/>serveur</a></div><nav class=post-nav><a class=prev href=/2013/02/resoudre-lerreur-network-server-getpeername-failure-107-transport-endpoint-is-not-connected-pour-nagios-nrpe/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Résoudre l&amp;rsquo;erreur Network server getpeername() failure (107: Transport endpoint is not connected) pour Nagios NRPE</span>
+<span class="prev-text nav-mobile">Prev</span></a>
+<a class=next href=/2013/02/supprimer-les-mails-recus-en-double-avec-pigeonhole-et-dovecot-2/><span class="next-text nav-default">Supprimer les mails reçus en double avec Pigeonhole et Dovecot 2</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname==="localhost")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="valouille",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:valerian.beaudoin@gmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/valouille/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://valouille.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2013 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>Valérian Beaudoin</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/lib/fancybox/jquery.fancybox-3.1.20.min.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-38377556-1","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

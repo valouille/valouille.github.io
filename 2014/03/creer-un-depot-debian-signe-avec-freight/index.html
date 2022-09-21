@@ -1,0 +1,103 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Créer un repository Debian signé avec Freight - VaLouille</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="VaLouille"><meta name=description content="Reprepro ne permet pas d’avoir plusieurs versions d’un même paquet dans son dépôt. Pour contourner cette limitation, je suis donc passé à Freight.
+Freight :
+permet d’ajouter des .deb directement sans fichier .changes signe à la volée les paquets autorise plusieurs versions d’un même paquet permet d’avoir plusieurs branches est très simple à installer et à maintenir est très léger et n’a pas besoin de base SQL L’installation est ultra simple :"><meta name=keywords content="Valérian,Beaudoin,VaLouille"><meta name=generator content="Hugo 0.103.1 with theme even"><link rel=canonical href=https://valouille.github.io/2014/03/creer-un-depot-debian-signe-avec-freight/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet><link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet><meta property="og:title" content="Créer un repository Debian signé avec Freight"><meta property="og:description" content="Reprepro ne permet pas d’avoir plusieurs versions d’un même paquet dans son dépôt. Pour contourner cette limitation, je suis donc passé à Freight.
+Freight :
+permet d’ajouter des .deb directement sans fichier .changes signe à la volée les paquets autorise plusieurs versions d’un même paquet permet d’avoir plusieurs branches est très simple à installer et à maintenir est très léger et n’a pas besoin de base SQL L’installation est ultra simple :"><meta property="og:type" content="article"><meta property="og:url" content="https://valouille.github.io/2014/03/creer-un-depot-debian-signe-avec-freight/"><meta property="article:section" content="post"><meta property="article:published_time" content="2014-03-20T10:40:20+00:00"><meta property="article:modified_time" content="2014-03-20T10:40:20+00:00"><meta itemprop=name content="Créer un repository Debian signé avec Freight"><meta itemprop=description content="Reprepro ne permet pas d’avoir plusieurs versions d’un même paquet dans son dépôt. Pour contourner cette limitation, je suis donc passé à Freight.
+Freight :
+permet d’ajouter des .deb directement sans fichier .changes signe à la volée les paquets autorise plusieurs versions d’un même paquet permet d’avoir plusieurs branches est très simple à installer et à maintenir est très léger et n’a pas besoin de base SQL L’installation est ultra simple :"><meta itemprop=datePublished content="2014-03-20T10:40:20+00:00"><meta itemprop=dateModified content="2014-03-20T10:40:20+00:00"><meta itemprop=wordCount content="503"><meta itemprop=keywords content="debian,depot,freight,repo,repository,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Créer un repository Debian signé avec Freight"><meta name=twitter:description content="Reprepro ne permet pas d’avoir plusieurs versions d’un même paquet dans son dépôt. Pour contourner cette limitation, je suis donc passé à Freight.
+Freight :
+permet d’ajouter des .deb directement sans fichier .changes signe à la volée les paquets autorise plusieurs versions d’un même paquet permet d’avoir plusieurs branches est très simple à installer et à maintenir est très léger et n’a pas besoin de base SQL L’installation est ultra simple :"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>VaLouille</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/cv/><li class=mobile-menu-item>About Me</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>VaLouille</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/cv/>About Me</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Créer un repository Debian signé avec Freight</h1><div class=post-meta><span class=post-time>2014-03-20</span><div class=post-category><a href=/categories/linux/>linux</a>
+<a href=/categories/sysadmin/>sysadmin</a></div></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>Reprepro ne permet pas d’avoir plusieurs versions d’un même paquet dans son dépôt. Pour contourner cette limitation, je suis donc passé à Freight.</p><p>Freight :</p><ul><li>permet d’ajouter des .deb directement sans fichier .changes</li><li>signe à la volée les paquets</li><li>autorise plusieurs versions d’un même paquet</li><li>permet d’avoir plusieurs branches</li><li>est très simple à installer et à maintenir</li><li>est très léger et n’a pas besoin de base SQL</li></ul><p>L’installation est ultra simple :</p><pre tabindex=0><code>echo &#34;deb http://packages.rcrowley.org $(lsb_release -sc) main&#34; | tee /etc/apt/sources.list.d/rcrowley.list
+wget -O /etc/apt/trusted.gpg.d/rcrowley.gpg http://packages.rcrowley.org/keyring.gpg
+apt-get update
+apt-get -y install freight
+</code></pre><p>On génère ensuite une clé GPG :</p><pre tabindex=0><code>gpg --gen-key
+</code></pre><pre tabindex=0><code>gpg (GnuPG) 1.4.12; Copyright (C) 2012 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+Your selection? 1
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) 2048
+Requested keysize is 2048 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0) 0
+Key does not expire at all
+Is this correct? (y/N) y
+
+You need a user ID to identify your key; the software constructs the user ID
+from the Real Name, Comment and Email Address in this form:
+    &#34;Heinrich Heine (Der Dichter) &lt;heinrichh@duesseldorf.de&gt;&#34;
+
+Real name: Internal Repository
+Email address: repository@exemple.com
+Comment:
+You selected this USER-ID:
+    &#34;Internal Repository &lt;repository@exemple.com&gt;&#34;
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O
+You need a Passphrase to protect your secret key.
+</code></pre><p>On peut entrer une passphrase ou pas.</p><p>Ensuite, on initialise le dépôt (ici je crée 2 branches) :</p><pre tabindex=0><code>mkdir /var/www/freight
+cd /var/www/freight
+freight-init --gpg=repo@exemple.com --libdir=/var/www/freight/lib --cachedir=/var/www/freight/cache --archs=&#34;i386 amd64 all&#34; --origin=&#34;My Internal Repository&#34; --label=&#34;My Internal Reposiroty&#34; --suite=&#34;wheezy-php53 wheezy-php54&#34;
+</code></pre><p>Puis pour ajouter des paquets, la commande est la suivante :</p><pre tabindex=0><code>freight add php5-cli_5.3.26_amd64.deb php5-cli_5.3.27_amd64.deb apt/wheezy-php53
+freight cache apt/wheezy-php53
+</code></pre><p>Voilà, il ne reste plus qu’à créer un Vhost qui point vers /var/www/freight/cache</p><pre tabindex=0><code>Alias /debian   /space/www/freight/cache
+&lt;Directory &#34;/space/www/freight/cache&#34;&gt;
+      Options Indexes FollowSymLinks MultiViews
+      AllowOverride Options
+      Order allow,deny
+      allow from all
+&lt;/Directory&gt;
+</code></pre><p>Les lignes à ajouter dans le fichier /etc/apt/sources.list des machines clientes seront de la forme suivante :</p><pre tabindex=0><code>deb http://exemple.com/debian wheezy-php54 main
+deb http://exemple.com/debian wheezy-php53 main
+</code></pre><p>Pour ajouter la clé publique sur les machines clientes :</p><pre tabindex=0><code>wget -O /etc/apt/trusted.gpg.d/exemple.gpg http://exemple.com/debian/keyring.gpg
+</code></pre><p>Et voilà :</p><pre tabindex=0><code># apt-cache policy php5-cli
+php5-cli:
+  Installed: (none)
+  Candidate: 5.5.9+dfsg-1
+  Version table:
+     5.5.9+dfsg-1 0
+        500 http://ftp.fr.debian.org/debian/ unstable/main amd64 Packages
+     5.3.27-1 0
+        500 http://exemple.com/debian/ wheezy-php53/main amd64 Packages
+     5.3.26-1 0
+        500 http://exemple.com/debian/ wheezy-php53/main amd64 Packages
+</code></pre><p>Si la clé a une passphrase et qu’on ne souhaite pas la taper à chaque ajout de paquet, on peut créer un fichier contenant la passphrase, et ajouter l’option suivante dans le fichier de configuration de Freight :</p><pre tabindex=0><code>GPG_PASSPHRASE_FILE=&#34;/root/.passphrase&#34;
+</code></pre></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>VaLouille</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2014-03-20</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/debian/>debian</a>
+<a href=/tags/depot/>depot</a>
+<a href=/tags/freight/>freight</a>
+<a href=/tags/repo/>repo</a>
+<a href=/tags/repository/>repository</a></div><nav class=post-nav><a class=prev href=/2014/03/empecher-les-mails-detre-delivres/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Empêcher les mails d'être délivrés</span>
+<span class="prev-text nav-mobile">Prev</span></a>
+<a class=next href=/2014/02/resoudre-lerreur-ssl-42-avec-thunderbird/><span class="next-text nav-default">Résoudre l'erreur SSL 42 avec thunderbird</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname==="localhost")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="valouille",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:valerian.beaudoin@gmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/valouille/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://valouille.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2013 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>Valérian Beaudoin</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/lib/fancybox/jquery.fancybox-3.1.20.min.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-38377556-1","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

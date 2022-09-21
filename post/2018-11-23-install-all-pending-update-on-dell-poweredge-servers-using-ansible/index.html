@@ -1,0 +1,191 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Install all firmware updates on Dell PowerEdge servers with Ansible - VaLouille</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="VaLouille"><meta name=description content="This feature is only available with iDRAC Enterprise License.
+The supported servers are :
+12G and 13G PowerEdge Servers: iDRAC 7 and 8 with Firmware version 2.50.50.50 and above 14G PowerEdge Servers: iDRAC 9 with Firmware version 3.18.18.18 and above While looking once more for the most easy way to update Dell servers firmwares, I stepped on this awesome video showing someone from Dell use Ansible to update at once all the firmwares of a server :"><meta name=keywords content="Valérian,Beaudoin,VaLouille"><meta name=generator content="Hugo 0.103.1 with theme even"><link rel=canonical href=https://valouille.github.io/post/2018-11-23-install-all-pending-update-on-dell-poweredge-servers-using-ansible/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet><link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet><meta property="og:title" content="Install all firmware updates on Dell PowerEdge servers with Ansible"><meta property="og:description" content="This feature is only available with iDRAC Enterprise License.
+The supported servers are :
+12G and 13G PowerEdge Servers: iDRAC 7 and 8 with Firmware version 2.50.50.50 and above 14G PowerEdge Servers: iDRAC 9 with Firmware version 3.18.18.18 and above While looking once more for the most easy way to update Dell servers firmwares, I stepped on this awesome video showing someone from Dell use Ansible to update at once all the firmwares of a server :"><meta property="og:type" content="article"><meta property="og:url" content="https://valouille.github.io/post/2018-11-23-install-all-pending-update-on-dell-poweredge-servers-using-ansible/"><meta property="article:section" content="post"><meta property="article:published_time" content="2018-11-23T19:37:00+01:00"><meta property="article:modified_time" content="2018-11-23T19:37:00+01:00"><meta itemprop=name content="Install all firmware updates on Dell PowerEdge servers with Ansible"><meta itemprop=description content="This feature is only available with iDRAC Enterprise License.
+The supported servers are :
+12G and 13G PowerEdge Servers: iDRAC 7 and 8 with Firmware version 2.50.50.50 and above 14G PowerEdge Servers: iDRAC 9 with Firmware version 3.18.18.18 and above While looking once more for the most easy way to update Dell servers firmwares, I stepped on this awesome video showing someone from Dell use Ansible to update at once all the firmwares of a server :"><meta itemprop=datePublished content="2018-11-23T19:37:00+01:00"><meta itemprop=dateModified content="2018-11-23T19:37:00+01:00"><meta itemprop=wordCount content="1435"><meta itemprop=keywords content="Dell,ansible,poweredge,update,firmware,BIOS,drivers,linux,drm,repository,iDRAC,automation,nfs,api,OOB,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Install all firmware updates on Dell PowerEdge servers with Ansible"><meta name=twitter:description content="This feature is only available with iDRAC Enterprise License.
+The supported servers are :
+12G and 13G PowerEdge Servers: iDRAC 7 and 8 with Firmware version 2.50.50.50 and above 14G PowerEdge Servers: iDRAC 9 with Firmware version 3.18.18.18 and above While looking once more for the most easy way to update Dell servers firmwares, I stepped on this awesome video showing someone from Dell use Ansible to update at once all the firmwares of a server :"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>VaLouille</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/cv/><li class=mobile-menu-item>About Me</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>VaLouille</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/cv/>About Me</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Install all firmware updates on Dell PowerEdge servers with Ansible</h1><div class=post-meta><span class=post-time>2018-11-23</span><div class=post-category><a href=/categories/ansible/>ansible</a>
+<a href=/categories/automation/>automation</a></div></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#overview>Overview</a></li><li><a href=#prerequisites>Prerequisites</a><ul><li><a href=#dell-emc-repository-manager>Dell EMC Repository Manager</a></li><li><a href=#dell-emc-openmanage-python-sdk>Dell EMC OpenManage Python SDK</a></li><li><a href=#ansible-modules>Ansible modules</a></li><li><a href=#nfs-server>NFS server</a></li></ul></li><li><a href=#export-of-the-dups-to-nfs-share>Export of the DUPs to NFS share</a><ul><li><a href=#ansible-playbook>Ansible playbook</a></li><li><a href=#running-ansible->Running Ansible !</a></li></ul></li></ul></nav></div></div><div class=post-content><blockquote><p>This feature is only available with iDRAC Enterprise License.</p></blockquote><p>The supported servers are :</p><ul><li>12G and 13G PowerEdge Servers: iDRAC 7 and 8 with Firmware version 2.50.50.50 and above</li><li>14G PowerEdge Servers: iDRAC 9 with Firmware version 3.18.18.18 and above</li></ul><p>While looking once more for the most easy way to update Dell servers firmwares, I stepped on this awesome video showing someone from Dell use Ansible to update at once all the firmwares of a server :</p><p>So, after some research on how to do it, here are all the steps needed to achieve this using only the CLI from a Linux Out-of-Band machine.</p><h2 id=overview>Overview</h2><p>In this guide, we&rsquo;ll install Dell EMC Repository Manager to create and maintain a repository containing the updates files for our servers and generate a Catalog.xml file that contains the relation informations. Then, we&rsquo;ll export these updates to a NFS share, and use Ansible + Dell EMC OpenManage Ansible Modules (which uses Dell EMC OpenManage Python SDK internally) to communicate with the iDRACs and trigger the updates that will be download from the NFS share.</p><blockquote><p>Since iDRACs will generate Server Configuration Profile files to the NFS share as the nobody user, Ansible must be run as root because it&rsquo;ll need the permission to edit these files.</p></blockquote><h2 id=prerequisites>Prerequisites</h2><h3 id=dell-emc-repository-manager>Dell EMC Repository Manager</h3><p>We need to download Dell Repository Manager from Dell website and install it. It can be found as a .BIN file and installed just by executing it. It also works on Ubuntu/Debian, even if not stated by Dell.</p><pre tabindex=0><code>chmod +x DRMInstaller_3.1.0.468.bin
+./DRMInstaller_3.1.0.468.bin
+</code></pre><p>The GUI didn&rsquo;t worked right away for me, as I got the following error while trying to launch it using <code>drm</code> command :</p><pre tabindex=0><code>Graphics Device initialization failed for :  es2, sw
+Error initializing QuantumRenderer: no suitable pipeline found
+java.lang.RuntimeException: java.lang.RuntimeException: Error initializing QuantumRenderer: no suitable pipeline found
+	at com.sun.javafx.tk.quantum.QuantumRenderer.getInstance(QuantumRenderer.java:280)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.init(QuantumToolkit.java:221)
+	at com.sun.javafx.tk.Toolkit.getToolkit(Toolkit.java:248)
+	at com.sun.javafx.application.PlatformImpl.startup(PlatformImpl.java:209)
+	at com.sun.javafx.application.LauncherImpl.startToolkit(LauncherImpl.java:675)
+	at com.sun.javafx.application.LauncherImpl.launchApplication1(LauncherImpl.java:695)
+	at com.sun.javafx.application.LauncherImpl.lambda$launchApplication$154(LauncherImpl.java:182)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.RuntimeException: Error initializing QuantumRenderer: no suitable pipeline found
+	at com.sun.javafx.tk.quantum.QuantumRenderer$PipelineRunnable.init(QuantumRenderer.java:94)
+	at com.sun.javafx.tk.quantum.QuantumRenderer$PipelineRunnable.run(QuantumRenderer.java:124)
+	... 1 more
+No toolkit found
+</code></pre><p>I needed to install the package <code>libswt-gtk-3-java</code> to fix this issue.</p><p>But in this configuration, we try to do everything from the CLI, so that doesn&rsquo;t really matter.</p><h4 id=optional>Optional</h4><p>Plugins can be installed in order to create bootable ISO including the firmwares, concatenated BIN files, etc&mldr; We can list the available plugins with the following command :</p><pre tabindex=0><code>drm --list=plugin
+
+Listing Plugins...
+
+
+Plugin                                       Current Version   Latest Version
+--------------                               --------------    --------------
+Dell EMC System Update(BIN)                  1.5.3             1.5.3
+Dell EMC Bootable ISO Plug-in                902.1             902.1
+Dell EMC Server Update Utility x64 Plug-in   782               782
+Dell EMC System Update(EXE)                  1.5.3             1.5.3
+</code></pre><p>To install a plugin, we can use the following command : <code>drm --update --plugin="Dell EMC System Update(EXE)"</code>.</p><h3 id=dell-emc-openmanage-python-sdk>Dell EMC OpenManage Python SDK</h3><p>Ansible modules require that <a href=https://github.com/dell/omsdk>Dell EMC OpenManage Python SDK</a> is installed on the system before being able to get installed. So here are the few steps to do it :</p><pre tabindex=0><code>git clone https://github.com/dell/omsdk.git
+sudo apt-get install python-pip
+cd omsdk
+sudo -H pip install -r requirements-python2x.txt # use requirements-python3x.txt if using Python 3
+sh build.sh 1.2 345
+cd dist
+sudo -H pip install omsdk-1.2.345-py2.py3-none-any.whl
+</code></pre><blockquote><p>Please refer to the project <a href=https://github.com/dell/omsdk>GitHub page</a> to install the latest version</p></blockquote><h3 id=ansible-modules>Ansible modules</h3><p>We need to install the <a href=https://github.com/dell/Dell-EMC-Ansible-Modules-for-iDRAC>Dell-EMC-Ansible-Modules-for-iDRAC</a> for our playbook to work :</p><pre tabindex=0><code>git clone https://github.com/dell/Dell-EMC-Ansible-Modules-for-iDRAC.git
+cd Dell-EMC-Ansible-Modules-for-iDRAC
+sudo -H python install.py
+</code></pre><h3 id=nfs-server>NFS server</h3><p>A NFS share will be used by the iDRAC to access the latest firmware versions and install them onto the machine. It&rsquo;ll also be used by the iDRACs to create a Server Configuration Profile file and by Ansible to modify these files.</p><p>A external NFS volume can be used but for the previously stated reasons it&rsquo;ll need to be acessible from the iDRACs and mounted locally on the server that runs Ansible.</p><p>For creating an NFS share, we can proceed like this :</p><blockquote><p>This is not a complete secure configuration of NFS server, please us it for POC only</p></blockquote><pre tabindex=0><code>sudo apt-get install rpcbind nfs-kernel-server
+</code></pre><p>Then we create a folder for the NFS share :</p><pre tabindex=0><code>mkdir -p /opt/dell/dellemcrepositorymanager/export
+chmod 777 /opt/dell/dellemcrepositorymanager/export
+</code></pre><p>Then, modify the /etc/exports file to add the share (adapt the IP to the one from your network) :</p><pre tabindex=0><code>/opt/dell/dellemcrepositorymanager/export 10.220.0.0/25(rw,fsid=0,insecure,no_subtree_check,async)
+</code></pre><p>The service needs to be rebooted for the share to become available :</p><pre tabindex=0><code>service nfs-kernel-server restart
+</code></pre><p>We can check access from the iDRAC using the <code>Test network connection</code> button in <code>Maintenance</code>, <code>System Update</code>, <code>Manual Update</code> after changing the <code>Location Type</code> to <code>Network Share</code> and entered the infos about the IP address of the NFS server and the Share Name.</p><h2 id=export-of-the-dups-to-nfs-share>Export of the DUPs to NFS share</h2><p>Once Dell Repository Manager is installed, we must configure it with a repository and export the Dell EMC Update Packages to the NFS share. This can be done using the following commands.</p><p>First, let&rsquo;s create the repository. Be aware that if you don&rsquo;t filter on the servers, hundred of gigabytes will be downloaded !</p><pre tabindex=0><code>$ drm --create --repository=Dell --inputplatformlist=&#34;R640,R740xd&#34;
+
+Creating repository Dell
+Job Submitted for repository creation
+</code></pre><p>We can check the status with the following command :</p><pre tabindex=0><code>drm --repository=Dell --details
+
+Listing version information for: Dell
+Version   Size      Date Created
+-------   ----      ------------
+1.00      5.63 GB   11/23/18 12:24 A.M
+</code></pre><p>The firmwares will be downloaded in /var/dell/drm/store/</p><p>We can check the progress using the following command :</p><pre tabindex=0><code>drm --list=job
+
+Listing Jobs...
+
+
+Name                                                          Status            Job Type              Next Execution date/time   Last Execution date/time
+----                                                          ------            --------              ------------------------   ------------------------
+Download_11/23/2018_11:04                                     SUCCESS           DOWNLOAD COMPONENTS   NA                         11/23/18 11:11 A.M
+Plugin Download- Dell EMC Server Update Utility x64 Plug-in   SUCCESS           PLUGIN_UPDATE         NA                         11/23/18 11:12 A.M
+Plugin Download- Dell EMC Bootable ISO Plug-in                SUCCESS           PLUGIN_UPDATE         NA                         11/23/18 11:27 A.M
+Plugin Download- Dell EMC System Update(BIN)                  SUCCESS           PLUGIN_UPDATE         NA                         11/23/18 11:28 A.M
+Plugin Download- Dell EMC System Update(EXE)                  SUCCESS           PLUGIN_UPDATE         NA                         11/23/18 11:28 A.M
+</code></pre><p>Once everything is downloaded, let&rsquo;s export the firmware binaries and the Catalog.xml file. The Catalog.xml files contains informations about the firmwares, and is used by the iDRAC to determine the updates to install.</p><pre tabindex=0><code>drm --deployment-type=export --repository=Dell:1.00 --location=/opt/dell/dellemcrepositorymanager/export
+
+Job Submitted for export
+</code></pre><p>The location can be an external NFS, in this case, we need to mount it locally of specify it with the <code>--location</code> command.</p><p>Once again, let&rsquo;s check the progress using the following command :</p><pre tabindex=0><code>drm --list=job
+
+Listing Jobs...
+
+
+Name                                                          Status            Job Type              Next Execution date/time   Last Execution date/time
+----                                                          ------            --------              ------------------------   ------------------------
+Download_11/23/2018_11:04                                     SUCCESS           DOWNLOAD COMPONENTS   NA                         11/23/18 11:11 A.M
+Plugin Download- Dell EMC Server Update Utility x64 Plug-in   SUCCESS           PLUGIN_UPDATE         NA                         11/23/18 11:12 A.M
+Plugin Download- Dell EMC Bootable ISO Plug-in                SUCCESS           PLUGIN_UPDATE         NA                         11/23/18 11:27 A.M
+Plugin Download- Dell EMC System Update(BIN)                  SUCCESS           PLUGIN_UPDATE         NA                         11/23/18 11:28 A.M
+Plugin Download- Dell EMC System Update(EXE)                  SUCCESS           PLUGIN_UPDATE         NA                         11/23/18 11:28 A.M
+Export_11/23/2018_12:42                                       RUNNING           SHARE                 NA                         NA
+</code></pre><p>Let&rsquo;s wait for it to have the <code>SUCCESS</code> status before running Ansible.</p><h3 id=ansible-playbook>Ansible playbook</h3><p>The Ansible playbook should look like this :</p><pre tabindex=0><code>---
+- hosts: hosts
+  connection: local
+  name: Update Firmware Inventory
+  gather_facts: False
+
+  tasks:
+  - name: Update Firmware Inventory
+    dellemc_install_firmware:
+       idrac_ip: &#34;{{ inveotry_hostname }}&#34;
+       idrac_user: &#34;ansible&#34;
+       idrac_pwd: &#34;*******&#34;
+       share_name: &#34;10.220.0.10:/opt/dell/dellemcrepositorymanager/export&#34;
+       share_mnt: &#34;/opt/dell/dellemcrepositorymanager/export&#34;
+       catalog_file_name: &#34;Dell_1.00_Catalog.xml&#34;
+       reboot: True
+       job_wait: True
+    tags :
+       - installfirmware
+</code></pre><p>The share_mnt option can be either the local NFS export directory on the local server, or the local mount of the external NFS volume used. As a Server Configuration Profile file a generated by the server and copied to the NFS share, it must be accessible locally.</p><p>Other options can be provided as specified in the <a href=https://github.com/dell/Dell-EMC-Ansible-Modules-for-iDRAC/blob/master/guides/OMAM_1.1_Users_Guide.pdf>related documentation</a></p><p>Let&rsquo;s create an inventory file also :</p><pre tabindex=0><code># inventory file
+---
+[hosts]
+ipmi-01.example.com
+ipmi-02.example.com
+</code></pre><h3 id=running-ansible->Running Ansible !</h3><p>Once the export is successfully completed, we can run the playbook !</p><blockquote><p>Please be careful that it&rsquo;ll reboot the host to apply the update if needed as we specified <code>reboot: True</code> in the playbook</p></blockquote><pre tabindex=0><code>sudo -H ansible-playbook dellemc_install_firmware.yml -i inventory -t installfirmware -vvvvv
+</code></pre><blockquote><p>It&rsquo;ll take a really long time to load and apply the updates, and it can be up to 1 hour. We also need to wait as long as it takes before the updates appears in the iDRAC logs and Job queue.</p></blockquote><p>After this long wait, here is what we can see :</p><pre tabindex=0><code>changed: [ipmi-01.example.com] =&gt; {
+    &#34;changed&#34;: true,
+    &#34;invocation&#34;: {
+        &#34;module_args&#34;: {
+            &#34;catalog_file_name&#34;: &#34;Dell_1.00_Catalog.xml&#34;,
+            &#34;idrac_ip&#34;: &#34;ipmi-01.example.com&#34;,
+            &#34;idrac_port&#34;: 443,
+            &#34;idrac_pwd&#34;: &#34;VALUE_SPECIFIED_IN_NO_LOG_PARAMETER&#34;,
+            &#34;idrac_user&#34;: &#34;root&#34;,
+            &#34;job_wait&#34;: true,
+            &#34;reboot&#34;: true,
+            &#34;share_mnt&#34;: &#34;/opt/dell/dellemcrepositorymanager/export&#34;,
+            &#34;share_name&#34;: &#34;10.220.0.10:/opt/dell/dellemcrepositorymanager/export&#34;,
+            &#34;share_pwd&#34;: null,
+            &#34;share_user&#34;: null
+        }
+    },
+    &#34;msg&#34;: {
+        &#34;@odata.context&#34;: &#34;/redfish/v1/$metadata#DellJob.DellJob&#34;,
+        &#34;@odata.id&#34;: &#34;/redfish/v1/Managers/iDRAC.Embedded.1/Jobs/JID_430165520584&#34;,
+        &#34;@odata.type&#34;: &#34;#DellJob.v1_0_0.DellJob&#34;,
+        &#34;CompletionTime&#34;: &#34;2018-11-23T18:25:58&#34;,
+        &#34;Description&#34;: &#34;Job Instance&#34;,
+        &#34;EndTime&#34;: null,
+        &#34;Id&#34;: &#34;JID_430165520584&#34;,
+        &#34;JobState&#34;: &#34;Completed&#34;,
+        &#34;JobType&#34;: &#34;ImportConfiguration&#34;,
+        &#34;Message&#34;: &#34;Successfully imported and applied Server Configuration Profile.&#34;,
+        &#34;MessageArgs&#34;: [],
+        &#34;MessageId&#34;: &#34;SYS053&#34;,
+        &#34;Name&#34;: &#34;Import Configuration&#34;,
+        &#34;PercentComplete&#34;: 100,
+        &#34;StartTime&#34;: &#34;TIME_NOW&#34;,
+        &#34;Status&#34;: &#34;Success&#34;,
+        &#34;TargetSettingsURI&#34;: null,
+        &#34;retval&#34;: true
+    }
+}
+</code></pre></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>VaLouille</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2018-11-23</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/dell/>Dell</a>
+<a href=/tags/ansible/>ansible</a>
+<a href=/tags/poweredge/>poweredge</a>
+<a href=/tags/update/>update</a>
+<a href=/tags/firmware/>firmware</a>
+<a href=/tags/bios/>BIOS</a>
+<a href=/tags/drivers/>drivers</a>
+<a href=/tags/linux/>linux</a>
+<a href=/tags/drm/>drm</a>
+<a href=/tags/repository/>repository</a>
+<a href=/tags/idrac/>iDRAC</a>
+<a href=/tags/automation/>automation</a>
+<a href=/tags/nfs/>nfs</a>
+<a href=/tags/api/>api</a>
+<a href=/tags/oob/>OOB</a></div><nav class=post-nav><a class=prev href=/post/2019-08-23-force-pods-in-a-specific-namespace-to-schedule-on-defined-nodes-with-kubernetes/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Force all pods in a specific namespace to schedule on defined hosts with Kubernetes</span>
+<span class="prev-text nav-mobile">Prev</span></a>
+<a class=next href=/post/2018-07-05-cloud-init-does-not-change-hostname-or-ssh-key-password-of-instance-in-openstack/><span class="next-text nav-default">Cloud-init doesn't append the SSH-key/password at first boot of an instance</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname==="localhost")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="valouille",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:valerian.beaudoin@gmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/valouille/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://valouille.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2013 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>Valérian Beaudoin</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/lib/fancybox/jquery.fancybox-3.1.20.min.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-38377556-1","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

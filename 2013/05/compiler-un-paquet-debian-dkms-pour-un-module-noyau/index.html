@@ -1,0 +1,171 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Compiler un paquet Debian DKMS pour un module noyau - VaLouille</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="VaLouille"><meta name=description content="Voici un exemple, pour le module wrapper qui permet de corriger la faille CVE-2013-2094 qui peut être exploitée avec l’outil semtex.c
+Il faut installer les dépendances suivantes :
+apt-get install debhelper dkms linux-headers-`uname -r` Puis on télécharge les sources du module dans /urs/src:
+cd /usr/src wget https://www.develer.com/~arighi/linux/fix/CVE-2013-2094/perf-bug-fix.tar.gz tar xvzf perf-bug-fix.tar.gz Il faut nommer le dossier en utilisant la syntaxe « module-version »
+mv perf-bug-fix wrapper-0.1 Puis on se place dans le dossier"><meta name=keywords content="Valérian,Beaudoin,VaLouille"><meta name=generator content="Hugo 0.103.1 with theme even"><link rel=canonical href=https://valouille.github.io/2013/05/compiler-un-paquet-debian-dkms-pour-un-module-noyau/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet><link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet><meta property="og:title" content="Compiler un paquet Debian DKMS pour un module noyau"><meta property="og:description" content="Voici un exemple, pour le module wrapper qui permet de corriger la faille CVE-2013-2094 qui peut être exploitée avec l’outil semtex.c
+Il faut installer les dépendances suivantes :
+apt-get install debhelper dkms linux-headers-`uname -r` Puis on télécharge les sources du module dans /urs/src:
+cd /usr/src wget https://www.develer.com/~arighi/linux/fix/CVE-2013-2094/perf-bug-fix.tar.gz tar xvzf perf-bug-fix.tar.gz Il faut nommer le dossier en utilisant la syntaxe « module-version »
+mv perf-bug-fix wrapper-0.1 Puis on se place dans le dossier"><meta property="og:type" content="article"><meta property="og:url" content="https://valouille.github.io/2013/05/compiler-un-paquet-debian-dkms-pour-un-module-noyau/"><meta property="article:section" content="post"><meta property="article:published_time" content="2013-05-21T12:55:23+00:00"><meta property="article:modified_time" content="2013-05-21T12:55:23+00:00"><meta itemprop=name content="Compiler un paquet Debian DKMS pour un module noyau"><meta itemprop=description content="Voici un exemple, pour le module wrapper qui permet de corriger la faille CVE-2013-2094 qui peut être exploitée avec l’outil semtex.c
+Il faut installer les dépendances suivantes :
+apt-get install debhelper dkms linux-headers-`uname -r` Puis on télécharge les sources du module dans /urs/src:
+cd /usr/src wget https://www.develer.com/~arighi/linux/fix/CVE-2013-2094/perf-bug-fix.tar.gz tar xvzf perf-bug-fix.tar.gz Il faut nommer le dossier en utilisant la syntaxe « module-version »
+mv perf-bug-fix wrapper-0.1 Puis on se place dans le dossier"><meta itemprop=datePublished content="2013-05-21T12:55:23+00:00"><meta itemprop=dateModified content="2013-05-21T12:55:23+00:00"><meta itemprop=wordCount content="533"><meta itemprop=keywords content="build,debian,dkms,kermel,module,paquet,semtex,wrapper,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Compiler un paquet Debian DKMS pour un module noyau"><meta name=twitter:description content="Voici un exemple, pour le module wrapper qui permet de corriger la faille CVE-2013-2094 qui peut être exploitée avec l’outil semtex.c
+Il faut installer les dépendances suivantes :
+apt-get install debhelper dkms linux-headers-`uname -r` Puis on télécharge les sources du module dans /urs/src:
+cd /usr/src wget https://www.develer.com/~arighi/linux/fix/CVE-2013-2094/perf-bug-fix.tar.gz tar xvzf perf-bug-fix.tar.gz Il faut nommer le dossier en utilisant la syntaxe « module-version »
+mv perf-bug-fix wrapper-0.1 Puis on se place dans le dossier"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>VaLouille</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/cv/><li class=mobile-menu-item>About Me</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>VaLouille</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/cv/>About Me</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Compiler un paquet Debian DKMS pour un module noyau</h1><div class=post-meta><span class=post-time>2013-05-21</span><div class=post-category><a href=/categories/linux/>linux</a>
+<a href=/categories/sysadmin/>sysadmin</a></div></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>Voici un exemple, pour le module wrapper qui permet de corriger la faille CVE-2013-2094 qui peut être exploitée avec l’outil semtex.c</p><p>Il faut installer les dépendances suivantes :</p><pre tabindex=0><code>apt-get install debhelper dkms linux-headers-`uname -r`
+</code></pre><p>Puis on télécharge les sources du module dans /urs/src:</p><pre tabindex=0><code>cd /usr/src
+wget https://www.develer.com/~arighi/linux/fix/CVE-2013-2094/perf-bug-fix.tar.gz
+tar xvzf perf-bug-fix.tar.gz
+</code></pre><p>Il faut nommer le dossier en utilisant la syntaxe « module-version »</p><pre tabindex=0><code>mv perf-bug-fix wrapper-0.1
+</code></pre><p>Puis on se place dans le dossier</p><pre tabindex=0><code>cd wrapper-0.1
+</code></pre><p>Il faut créer un fichier dkms.conf contenant les lignes suivantes, en remplacant le nom du module et la version :</p><pre tabindex=0><code>PACKAGE_NAME=&#34;perl-bug-fix&#34;
+PACKAGE_VERSION=&#34;0.1&#34;
+CLEAN=&#34;make clean&#34;
+MAKE[0]=&#34;make all KVERSION=$kernelver&#34;
+BUILT_MODULE_NAME[0]=&#34;wrapper&#34;
+DEST_MODULE_LOCATION[0]=&#34;/updates&#34;
+AUTOINSTALL=&#34;yes&#34;
+POST_BUILD=&#34;exit 0&#34;
+</code></pre><p>Ensuite on ajoute le module à DKMS (toujours adapter nom/version) :</p><pre tabindex=0><code># dkms add -m wrapper -v 0.1
+
+Creating symlink /var/lib/dkms/wrapper/0.1/source -&gt;
+                 /usr/src/wrapper-0.1
+
+DKMS: add completed.
+</code></pre><p>Dans mon cas, j’ai dû adapter le fichier Makefile (c’est probablement très moche):</p><pre tabindex=0><code>ifndef KDIR
+KDIR:=/lib/modules/`uname -r`/build
+endif
+PWD := $(shell pwd)
+obj-m := wrapper.o
+
+all:
+        $(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules
+install:
+        $(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules_install
+clean:
+        rm -f *.o *.ko *.mod.* .*.cmd *.ko.unsigned Module.symvers modules.order
+        rm -rf .tmp_versions
+</code></pre><p>Puis on lance la compilation :</p><pre tabindex=0><code># dkms build -m wrapper -v 0.1
+
+Kernel preparation unnecessary for this kernel.  Skipping...
+
+Building module:
+cleaning build area....
+make KERNELRELEASE=3.2.0-4-amd64 all KVERSION=3.2.0-4-amd64....
+cleaning build area....
+
+DKMS: build completed.
+</code></pre><p>On crée le paquet debian source :</p><pre tabindex=0><code># dkms mkdsc -m wrapper -v 0.1 --source-only
+Using /etc/dkms/template-dkms-mkdsc
+copying template...
+modifying debian/changelog...
+modifying debian/compat...
+modifying debian/control...
+modifying debian/copyright...
+modifying debian/dirs...
+modifying debian/postinst...
+modifying debian/prerm...
+modifying debian/README.Debian...
+modifying debian/rules...
+copying legacy postinstall template...
+Copying source tree...
+Building source package... dpkg-source --before-build wrapper-dkms-0.1
+ debian/rules clean
+ dpkg-source -b wrapper-dkms-0.1
+dpkg-source: warning: no source format specified in debian/source/format, see dpkg-source&amp;#40;1&amp;#41;
+ dpkg-genchanges -S &gt;../wrapper-dkms_0.1_source.changes
+dpkg-genchanges: including full source code in upload
+ dpkg-source --after-build wrapper-dkms-0.1
+
+
+DKMS: mkdsc completed.
+Moving built files to /var/lib/dkms/wrapper/0.1/dsc...
+Cleaning up temporary files...
+</code></pre><p>Puis on crée le paquet Debian:</p><pre tabindex=0><code># dkms mkdeb -m wrapper -v 0.1 --source-only
+Using /etc/dkms/template-dkms-mkdeb
+copying template...
+modifying debian/changelog...
+modifying debian/compat...
+modifying debian/control...
+modifying debian/copyright...
+modifying debian/dirs...
+modifying debian/postinst...
+modifying debian/prerm...
+modifying debian/README.Debian...
+modifying debian/rules...
+copying legacy postinstall template...
+Copying source tree...
+Building binary package...dpkg-buildpackage: warning: using a gain-root-command while being root
+ dpkg-source --before-build wrapper-dkms-0.1
+ fakeroot debian/rules clean
+ debian/rules build
+ fakeroot debian/rules binary
+ dpkg-genchanges -b &gt;../wrapper-dkms_0.1_amd64.changes
+dpkg-genchanges: binary-only upload - not including any source code
+ dpkg-source --after-build wrapper-dkms-0.1
+
+
+DKMS: mkdeb completed.
+Moving built files to /var/lib/dkms/wrapper/0.1/deb...
+Cleaning up temporary files...
+</code></pre><p>Il faut déplacer le dossier puis on peut tester :</p><pre tabindex=0><code># mv /var/lib/dkms/wrapper/ /var/lib/dkms/wrapper-old/
+# dpkg -i /var/lib/dkms/wrapper-old/0.1/deb/wrapper-dkms_0.1_all.deb 
+Selecting previously unselected package wrapper-dkms.
+&amp;#40;Reading database ... 154687 files and directories currently installed.&amp;#41;
+Unpacking wrapper-dkms &amp;#40;from .../deb/wrapper-dkms_0.1_all.deb&amp;#41; ...
+Setting up wrapper-dkms &amp;#40;0.1&amp;#41; ...
+Loading new wrapper-0.1 DKMS files...
+First Installation: checking all kernels...
+Building for 3.2.0-4-amd64 and 3.8-2-amd64
+Building for architecture amd64
+Building initial module for 3.2.0-4-amd64
+Done.
+
+wrapper:
+Running module version sanity check.
+ - Original module
+   - No original module exists within this kernel
+ - Installation
+   - Installing to /lib/modules/3.2.0-4-amd64/updates/dkms/
+
+depmod....
+
+DKMS: install completed.
+Module build for the currently running kernel was skipped since the
+kernel source for this kernel does not seem to be installed.
+</code></pre><p>Il ne reste qu’à charger le module :</p><pre tabindex=0><code># modprobe wrapper
+# lsmod | grep wrapper
+wrapper                12421  0
+</code></pre></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>VaLouille</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2013-05-21</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/build/>build</a>
+<a href=/tags/debian/>debian</a>
+<a href=/tags/dkms/>dkms</a>
+<a href=/tags/kermel/>kermel</a>
+<a href=/tags/module/>module</a>
+<a href=/tags/paquet/>paquet</a>
+<a href=/tags/semtex/>semtex</a>
+<a href=/tags/wrapper/>wrapper</a></div><nav class=post-nav><a class=prev href=/2013/05/corriger-la-faille-kernel-cve-2013-2094-sans-reboot-sous-debian/><i class="iconfont icon-left"></i>
+<span class="prev-text nav-default">Corriger la faille kernel CVE-2013-2094 sans reboot sous Debian</span>
+<span class="prev-text nav-mobile">Prev</span></a>
+<a class=next href=/2013/05/installer-xdiff-sous-debian-avec-php-5-4/><span class="next-text nav-default">Installer xdiff sous Debian avec PHP 5.4</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname==="localhost")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="valouille",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:valerian.beaudoin@gmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/valouille/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://valouille.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2013 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>Valérian Beaudoin</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/lib/fancybox/jquery.fancybox-3.1.20.min.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-38377556-1","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

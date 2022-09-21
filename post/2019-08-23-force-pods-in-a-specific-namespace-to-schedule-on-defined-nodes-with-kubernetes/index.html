@@ -1,0 +1,114 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Force all pods in a specific namespace to schedule on defined hosts with Kubernetes - VaLouille</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="VaLouille"><meta name=description content="Sometimes, we need to stick pods to specific hosts to isolate business critical workloads from others, or take advantage of different server types. We can do it by assigning a critical taint on a node as follows (critical can be changed to whatever you like):
+kubectl taint nodes node1 role=critical:NoSchedule or using kops, on a newly created critical InstanceGroup :
+spec: taints: - role=critical:NoSchedule Nodes having this taint won&amp;rsquo;t schedule any pods that don&amp;rsquo;t have a toleration assigned to them."><meta name=keywords content="Valérian,Beaudoin,VaLouille"><meta name=generator content="Hugo 0.103.1 with theme even"><link rel=canonical href=https://valouille.github.io/post/2019-08-23-force-pods-in-a-specific-namespace-to-schedule-on-defined-nodes-with-kubernetes/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet><link href=/lib/fancybox/jquery.fancybox-3.1.20.min.css rel=stylesheet><meta property="og:title" content="Force all pods in a specific namespace to schedule on defined hosts with Kubernetes"><meta property="og:description" content="Sometimes, we need to stick pods to specific hosts to isolate business critical workloads from others, or take advantage of different server types. We can do it by assigning a critical taint on a node as follows (critical can be changed to whatever you like):
+kubectl taint nodes node1 role=critical:NoSchedule or using kops, on a newly created critical InstanceGroup :
+spec: taints: - role=critical:NoSchedule Nodes having this taint won&rsquo;t schedule any pods that don&rsquo;t have a toleration assigned to them."><meta property="og:type" content="article"><meta property="og:url" content="https://valouille.github.io/post/2019-08-23-force-pods-in-a-specific-namespace-to-schedule-on-defined-nodes-with-kubernetes/"><meta property="article:section" content="post"><meta property="article:published_time" content="2019-08-23T12:37:00+01:00"><meta property="article:modified_time" content="2019-08-23T12:37:00+01:00"><meta itemprop=name content="Force all pods in a specific namespace to schedule on defined hosts with Kubernetes"><meta itemprop=description content="Sometimes, we need to stick pods to specific hosts to isolate business critical workloads from others, or take advantage of different server types. We can do it by assigning a critical taint on a node as follows (critical can be changed to whatever you like):
+kubectl taint nodes node1 role=critical:NoSchedule or using kops, on a newly created critical InstanceGroup :
+spec: taints: - role=critical:NoSchedule Nodes having this taint won&rsquo;t schedule any pods that don&rsquo;t have a toleration assigned to them."><meta itemprop=datePublished content="2019-08-23T12:37:00+01:00"><meta itemprop=dateModified content="2019-08-23T12:37:00+01:00"><meta itemprop=wordCount content="594"><meta itemprop=keywords content="namespace,ns,pods,kops,PodNodeSelector,node-selector,taints,tolerations,kubernetes,"><meta name=twitter:card content="summary"><meta name=twitter:title content="Force all pods in a specific namespace to schedule on defined hosts with Kubernetes"><meta name=twitter:description content="Sometimes, we need to stick pods to specific hosts to isolate business critical workloads from others, or take advantage of different server types. We can do it by assigning a critical taint on a node as follows (critical can be changed to whatever you like):
+kubectl taint nodes node1 role=critical:NoSchedule or using kops, on a newly created critical InstanceGroup :
+spec: taints: - role=critical:NoSchedule Nodes having this taint won&rsquo;t schedule any pods that don&rsquo;t have a toleration assigned to them."><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>VaLouille</a></div><div class=mobile-navbar-icon><span></span>
+<span></span>
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a><a href=/cv/><li class=mobile-menu-item>About Me</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>VaLouille</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li><li class=menu-item><a class=menu-item-link href=/cv/>About Me</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>Force all pods in a specific namespace to schedule on defined hosts with Kubernetes</h1><div class=post-meta><span class=post-time>2019-08-23</span><div class=post-category><a href=/categories/kubernetes/>kubernetes</a></div></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents></nav></div></div><div class=post-content><p>Sometimes, we need to stick pods to specific hosts to isolate business critical workloads from others, or take advantage of different server types. We can do it by assigning a <code>critical</code> <a href=https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/>taint</a> on a node as follows (<code>critical</code> can be changed to whatever you like):</p><pre tabindex=0><code>kubectl taint nodes node1 role=critical:NoSchedule
+</code></pre><p>or using kops, on a newly created <code>critical</code> InstanceGroup :</p><pre tabindex=0><code>spec:
+  taints:
+  - role=critical:NoSchedule
+</code></pre><p>Nodes having this taint won&rsquo;t schedule any pods that don&rsquo;t have a toleration assigned to them.</p><p>To distinguish these nodes from the others, we need to assign them a label (if using another InstanceGroup in kops, this is unnecessary since we can use <code>kops.k8s.io/instancegroup</code> label which is automatically created by kops) :</p><pre tabindex=0><code>kubectl label node node1 role=critical
+</code></pre><p>Then, to schedule a pod on a node having this taint, we need to specify the label of the host, and we must add a <a href=https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/>toleration</a> to its deployment :</p><pre tabindex=0><code>spec:
+  template:
+    spec:
+      tolerations:
+      - key: &#34;role&#34;
+        operator: &#34;Equal&#34;
+        value: &#34;critical&#34;
+        effect: &#34;NoSchedule&#34;
+      nodeSelector:
+        role: critical
+</code></pre><p>If using kops, we can use <code>kops.k8s.io/instancegroup</code> label:</p><pre tabindex=0><code>spec:
+  template:
+    spec:
+      tolerations:
+      - key: &#34;role&#34;
+        operator: &#34;Equal&#34;
+        value: &#34;critical&#34;
+        effect: &#34;NoSchedule&#34;
+      nodeSelector:
+        kops.k8s.io/instancegroup: critical
+</code></pre><p>While this is nice and can be sufficient, it still requires adding specific configuration to the deployments, and can be hard to systemize.</p><p>A good way to ensure that critical pods are always running on tainted nodes is to use a namespace that has the ability to schedule them on the correct hosts by automatically adding the <code>nodeSelector</code> and <code>toleration</code> configuration. This can be done by enabling two admission controllers : <a href=https://kubernetes.io/docs/admin/admission-controllers/#podnodeselector>PodNodeSelector</a> & <a href=https://kubernetes.io/docs/admin/admission-controllers/#podtolerationrestriction>PodTolerationRestriction</a>.</p><p>This can be done by adding to <code>--enable-admission-plugins</code> flag in api-server configuration file located at <code>/etc/kubernetes/manifests/kube-apiserver.manifest</code> the two admission controllers:</p><pre tabindex=0><code>--enable-admission-plugins=[...],PodNodeSelector,PodTolerationRestriction
+</code></pre><blockquote><p>The flag is named <code>--admission-control</code> before Kubernetes 1.10</p></blockquote><blockquote><p>Don&rsquo;t forget to apply the new configuration</p></blockquote><p>or using Kops by adding in the cluster configuration file :</p><pre tabindex=0><code>spec:
+  kubeAPIServer:
+    enableAdmissionPlugins:
+    - Initializers
+    - NamespaceLifecycle
+    - LimitRanger
+    - ServiceAccount
+    - PersistentVolumeLabel
+    - DefaultStorageClass
+    - DefaultTolerationSeconds
+    - MutatingAdmissionWebhook
+    - ValidatingAdmissionWebhook
+    - NodeRestriction
+    - ResourceQuota
+    # added admission controllers
+    - PodNodeSelector
+    - PodTolerationRestriction
+</code></pre><blockquote><p><code>enableAdmissionPlugins</code> parameter is called <code>admissionControl</code> before Kubernetes 1.10</p></blockquote><blockquote><p>Don&rsquo;t forget to perform a rolling-update to enable the modifications</p></blockquote><p>Then, we need to add to the namespace the following annotations so that new pods created inside of it will be assigned the correct nodeSelector and tolerations configuration :</p><pre tabindex=0><code>apiVersion: v1
+kind: Namespace
+metadata:
+  name: critical
+  annotations:
+    scheduler.alpha.kubernetes.io/defaultTolerations: &#39;[{&#34;Key&#34;: &#34;role&#34;, &#34;Operator&#34;: &#34;Equal&#34;, &#34;Value&#34;: &#34;critical&#34;, &#34;Effect&#34;: &#34;NoSchedule&#34;}]&#39;
+    scheduler.alpha.kubernetes.io/node-selector: &#34;role=critical&#34;
+</code></pre><p>Or is using Kops with a <code>critical</code> InstanceGroup</p><pre tabindex=0><code>apiVersion: v1
+kind: Namespace
+metadata:
+  name: critical
+  annotations:
+    scheduler.alpha.kubernetes.io/defaultTolerations: &#39;[{&#34;Key&#34;: &#34;role&#34;, &#34;Operator&#34;: &#34;Equal&#34;, &#34;Value&#34;: &#34;critical&#34;, &#34;Effect&#34;: &#34;NoSchedule&#34;}]&#39;
+    scheduler.alpha.kubernetes.io/node-selector: &#34;kops.k8s.io/instancegroup=critical&#34;
+</code></pre><p>Then, to test, we can schedule a pod :</p><pre tabindex=0><code>kubectl run -n critical nginx --image=nginx --port=80
+</code></pre><p>Then we check it has the correct configurations :</p><pre tabindex=0><code> » kubectl get pods -n critical
+NAME                     READY   STATUS    RESTARTS   AGE
+nginx-6f858d5d45-8zgjc   1/1     Running   0          3m
+</code></pre><pre tabindex=0><code> » kubectl describe pod nginx-6f858d5d45-8zgjc -n critical
+ [...]
+  nodeSelector:
+    kops.k8s.io/instancegroup: critical
+  tolerations:
+  - effect: NoSchedule
+    key: role
+    operator: Equal
+    value: critical
+</code></pre><p>To find on which node the pod is running, we can use the following command :</p><pre tabindex=0><code>» kubectl get pods nginx-6f858d5d45-8zgjc -o &#34;jsonpath={.spec.nodeName}&#34;
+node1
+</code></pre><p>To verify that this is a critical workloads dedicated node, we can use the following command :</p><pre tabindex=0><code>» kubectl get node node1 -L role
+NAME    STATUS   ROLES   AGE   VERSION    ROLE
+node1   Ready    node    1h    v1.14.2    critical
+</code></pre><p>Or if using Kops :</p><pre tabindex=0><code>» kubectl get node node1 -L kops.k8s.io/instancegroup
+NAME    STATUS   ROLES   AGE   VERSION    INSTANCEGROUP
+node1   Ready    node    1h    v1.14.2    critical
+</code></pre><p>And that&rsquo;s a node dedicated to business critical pods !</p></div><div class=post-copyright><p class=copyright-item><span class=item-title>Author</span>
+<span class=item-content>VaLouille</span></p><p class=copyright-item><span class=item-title>LastMod</span>
+<span class=item-content>2019-08-23</span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/namespace/>namespace</a>
+<a href=/tags/ns/>ns</a>
+<a href=/tags/pods/>pods</a>
+<a href=/tags/kops/>kops</a>
+<a href=/tags/podnodeselector/>PodNodeSelector</a>
+<a href=/tags/node-selector/>node-selector</a>
+<a href=/tags/taints/>taints</a>
+<a href=/tags/tolerations/>tolerations</a>
+<a href=/tags/kubernetes/>kubernetes</a></div><nav class=post-nav><a class=next href=/post/2018-11-23-install-all-pending-update-on-dell-poweredge-servers-using-ansible/><span class="next-text nav-default">Install all firmware updates on Dell PowerEdge servers with Ansible</span>
+<span class="next-text nav-mobile">Next</span>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname==="localhost")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="valouille",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>Please enable JavaScript to view the <a href=http://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href=mailto:valerian.beaudoin@gmail.com class="iconfont icon-email" title=email></a>
+<a href=https://www.linkedin.com/in/valouille/ class="iconfont icon-linkedin" title=linkedin></a>
+<a href=https://valouille.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>Powered by <a class=hexo-link href=https://gohugo.io>Hugo</a></span>
+<span class=division>|</span>
+<span class=theme-info>Theme -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
+2013 -
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>Valérian Beaudoin</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script type=text/javascript src=/lib/jquery/jquery-3.2.1.min.js></script>
+<script type=text/javascript src=/lib/slideout/slideout-1.0.1.min.js></script>
+<script type=text/javascript src=/lib/fancybox/jquery.fancybox-3.1.20.min.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-38377556-1","auto"),ga("send","pageview"))</script><script async src=https://www.google-analytics.com/analytics.js></script></body></html>

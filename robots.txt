@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://valouille.github.io/sitemap.xml

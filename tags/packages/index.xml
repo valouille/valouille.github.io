@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>packages on VaLouille</title><link>https://valouille.github.io/tags/packages/</link><description>Recent content in packages on VaLouille</description><generator>Hugo -- gohugo.io</generator><language>fr</language><copyright>Valérian Beaudoin</copyright><lastBuildDate>Wed, 27 Aug 2014 16:23:15 +0000</lastBuildDate><atom:link href="https://valouille.github.io/tags/packages/index.xml" rel="self" type="application/rss+xml"/><item><title>Installer Dell Powervault MD Storage Software (SMcli …) sous Debian</title><link>https://valouille.github.io/2014/08/installer-dell-powervault-md-storage-software-smcli/</link><pubDate>Wed, 27 Aug 2014 16:23:15 +0000</pubDate><guid>https://valouille.github.io/2014/08/installer-dell-powervault-md-storage-software-smcli/</guid><description>Voici la procédure pour installer SMclient sous Debian en passant par des paquets .DEB :
+Java doit être installé :
+apt-get install openjdk-7-jre Télécharger le ressource CD/DVD sur le site de Dell (Actuellement : DELL_MDSS_Consolidated_RDVD_5_1_0_9.iso)
+Le monter :
+mount DELL_MDSS_Consolidated_RDVD_5_1_0_9.iso /mnt On copie les fichiers qui nous intéressent :
+mkdir ~/dell_mdss cp /mnt/linux/mdsm/* ~/dell_mdss cd ~/dell_mdss On crée le lien necessaire pour l’exécution du binaire :
+ln -s /lib/x86_64-linux-gnu/libc.so.6 /lib/libc.so.6 On lance le binaire :</description></item><item><title>Paquets Debian pour roundcube 0.9.0</title><link>https://valouille.github.io/2013/04/paquets-debian-pour-roundcube-0-9-0/</link><pubDate>Fri, 19 Apr 2013 16:14:31 +0000</pubDate><guid>https://valouille.github.io/2013/04/paquets-debian-pour-roundcube-0-9-0/</guid><description>Voici des paquets debian permettant d’installer la dernière version de roundcube :
+roundcube_0.9.0.tar.gz
+Pour l’installer :
+wget https://blog.valouille.fr/wp-content/uploads/2013/04/roundcube_0.9.0.tar.gz tar xvzf roundcube_0.9.0.tar.gz dpkg -i roundcube_0.9.0-1_all.deb roundcube-core_0.9.0-1_all.deb roundcube-mysql_0.9.0-1_all.deb roundcube-plugins_0.9.0-1_all.deb Ou pour utiliser postgreSQL à la place de mySQL:
+dpkg -i roundcube_0.9.0-1_all.deb roundcube-core_0.9.0-1_all.deb roundcube-pgsql_0.9.0-1_all.deb roundcube-plugins_0.9.0-1_all.deb</description></item></channel></rss>
