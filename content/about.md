@@ -18,7 +18,9 @@ mathjax: false
 
 ## Professional Background
 
-2021 - now : **Engineering Manager Infrastructure**, Back Market, *Paris*
+2022 - now : **Engineering Manager APAC**, Back Market, *Tokyo*
+
+2021 - 2022 : **Engineering Manager Infrastructure**, Back Market, *Paris*
 
 2020 - 2021 : **DevOps Tech Lead**, Back Market, *Paris*
 
