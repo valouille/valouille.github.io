@@ -20,13 +20,19 @@ mathjax: false
 
 2022 - now : **Engineering Manager APAC**, Back Market, *Tokyo*
 
+*Deployment and localization of APAC markets, including Japan and Australia.*
+
 2021 - 2022 : **Engineering Manager Infrastructure**, Back Market, *Paris*
+
+*Management of a team of 10 engineers managing cloud resources.*
 
 2020 - 2021 : **DevOps Tech Lead**, Back Market, *Paris*
 
+*Technical lead of infrastructure resources deployment and management, and tools used by developers.*
+
 2019 - 2020 : **DevOps Engineer**, Back Market, *Paris*
 
-*Part of the DevOps team, I'm in charge of running Back Market websites with Kubernetes platforms on AWS using tools such as TerraGrunt, Kops or Helm to ensure the complete reproducibility of our stacks.*
+*Part of the DevOps team, I was in charge of running Back Market websites with Kubernetes platforms on AWS using tools such as TerraGrunt, Kops or Helm to ensure the complete reproducibility of our stacks.*
 
 2018 - 2019 : **Infrastructure and DevOps Engineer - Europe**, Rakuten, *Paris*
 
