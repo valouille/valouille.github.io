@@ -50,6 +50,7 @@ copyright = "Valérian Beaudoin"            # default: author.name ↓        # 
 [params]
   version = "4.x"           # Used to give a friendly message when you have an incompatible update
   debug = false             # If true, load `eruda.min.js`. See https://github.com/liriliri/eruda
+  mainCSS = "sass/main.scss"
 
   since = "2013"            # Site creation time          # 站点建立时间
 

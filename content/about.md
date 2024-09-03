@@ -1,7 +1,7 @@
 ---
 title: "About Me"
 date: 2017-08-20T21:38:52+08:00
-lastmod: 2024-09-03T21:41:52+08:00
+lastmod: 2024-09-02T21:41:52+08:00
 menu: "main"
 weight: 50
 toc: true
@@ -20,11 +20,10 @@ mathjax: false
 
 2023 - now : **Engineering Manager - Global Growth**, Back Market, _Tokyo_
 
-_The Global Growth team is helping Back Market increase its impact and reach by finding growth opportunities in Europe, North America, and APAC and implement then regardless the technical or functional scope._
+_The Global Growth team is helping Back Market increase its impact and reach by finding growth opportunities in Europe, North America, and APAC and implement them regardless the technical or functional scope._
 
 - Automatically replace orders cancelled due to stock issues with another seller's stock
-- A/B tests on product pages
-- SEO improvements
+- A/B tests on product pages & SEO improvements
 - Currently working on Express Replacement feature (sending a replacement device when there is a defect before the customer sends it back)
 
 2022 - 2023 : **Engineering Manager APAC**, Back Market, _Paris/Tokyo_
@@ -161,11 +160,11 @@ Apache, Nginx, Varnish, HAProxy, Tomcat, PHP, MySQL
 
 **French:** Native
 
-**English:** Scored 935 points at TOEIC in 2011
+**English:** Fluent
 
 **Spanish:** Elementary
 
-**Japanese:** Night classes, 114 at the JLPT N5 in 2017, 98 at the JLPT N4 in 2019
+**Japanese:** Night classes, JLPT N5 in 2017, JLPT N4 in 2019, JLPT N3 in 2022
 
 ## Interests
 
